@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj0l75s18h1yo"]
+
+[ext_resource type="PackedScene" uid="uid://b212itlhyclqg" path="res://Other/Scenes/User Interface/Menus/menu_core.tscn" id="1_78nwv"]
+[ext_resource type="PackedScene" uid="uid://cw2j64pbmrk6p" path="res://Other/Scenes/User Interface/General/UI_button_general.tscn" id="2_0mlty"]
+[ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="3_4o7a4"]
+[ext_resource type="PackedScene" uid="uid://bftpinyt3ba4w" path="res://Other/Scenes/display_information.tscn" id="4_0mlty"]
+
+[node name="menu_core" instance=ExtResource("1_78nwv")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="container_buttons" type="VBoxContainer" parent="." index="0"]
+z_index = 25
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_right = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="btn_entity_editor" parent="container_buttons" index="0" instance=ExtResource("2_0mlty")]
+z_index = 15
+layout_mode = 2
+theme = ExtResource("3_4o7a4")
+text_manager_message = "[/]Entity Editor"
+decoration_base_size_multiplier = Vector2(0.5, 1)
+on_hover_message_text = "The thing."
+
+[node name="btn_Quit to Main Menu" parent="container_buttons" index="1" instance=ExtResource("2_0mlty")]
+z_index = 20
+layout_mode = 2
+text_manager_message = "[/]Quit to Main Menu"
+decoration_base_size_multiplier = Vector2(0.7, 1)
+on_hover_message_text = "How funny would it be to-"
+
+[node name="btn_Quit Game" parent="container_buttons" index="2" instance=ExtResource("2_0mlty")]
+z_index = 25
+layout_mode = 2
+text_manager_message = "[/]Exit to windows"
+decoration_base_size_multiplier = Vector2(0.7, 1)
+on_hover_message_text = "Please... PLEASE do not do it to me :("
+
+[node name="btn_Close Menu" parent="container_buttons" index="3" instance=ExtResource("2_0mlty")]
+z_index = 25
+layout_mode = 2
+text_manager_message = "[/]Close the menu"
+decoration_base_size_multiplier = Vector2(0.6, 1)
+on_hover_message_text = "Closes the MENU. You thought pressing ESC would do that? How silly of you!"
+
+[node name="display_information" parent="." index="6" instance=ExtResource("4_0mlty")]
+layout_mode = 1
+offset_left = 272.0
+offset_top = 64.0
+offset_right = -1264.0
+offset_bottom = -568.0
+scale = Vector2(1.25, 1.25)
+
+[connection signal="pressed" from="container_buttons/btn_entity_editor" to="." method="_on_btn_entity_editor_pressed"]
+[connection signal="pressed" from="container_buttons/btn_Quit to Main Menu" to="." method="_on_btn_quit_to_main_menu_pressed" binds= [10.0]]
+[connection signal="pressed" from="container_buttons/btn_Quit Game" to="." method="_on_btn_quit_game_pressed" binds= [10.0]]
+[connection signal="pressed" from="container_buttons/btn_Close Menu" to="." method="_on_btn_close_pressed"]

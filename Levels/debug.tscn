@@ -1,0 +1,283 @@
+[gd_scene load_steps=10 format=3 uid="uid://c42npvd5td777"]
+
+[ext_resource type="PackedScene" uid="uid://pu6px63ietmi" path="res://Other/Scenes/world.tscn" id="1_5agn5"]
+[ext_resource type="PackedScene" uid="uid://b6sm67hlya8p" path="res://Tilesets/tileset_main.tscn" id="2_h35e0"]
+[ext_resource type="PackedScene" uid="uid://cdppta5y51e08" path="res://Tilesets/tileset_objects.tscn" id="3_wupxo"]
+[ext_resource type="PackedScene" uid="uid://dfg7r4vdcruea" path="res://Tilesets/tileset_main_precise.tscn" id="4_b31uc"]
+[ext_resource type="PackedScene" uid="uid://oswqe4x5q4gm" path="res://Tilesets/tileset_objects_precise.tscn" id="5_6k4f8"]
+[ext_resource type="Script" uid="uid://dauccjnq0jjch" path="res://Levels/entity_spawn_pos_marker.gd" id="6_5agn5"]
+[ext_resource type="PackedScene" uid="uid://cnm366ngimnm3" path="res://Objects/entity_editor_full.tscn" id="7_h35e0"]
+[ext_resource type="PackedScene" uid="uid://dlpjl7dfwlbdb" path="res://Objects/Decorations/decoration_gear_random_type.tscn" id="8_wupxo"]
+[ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="9_b31uc"]
+
+[node name="World" instance=ExtResource("1_5agn5")]
+entity_editor = true
+on_start_camera_effect = false
+
+[node name="tileset_main" parent="." index="0" instance=ExtResource("2_h35e0")]
+layer_0/tile_data = PackedInt32Array(131057, 0, 10, 65521, 0, 10, -15, 0, 10, -65551, 0, 10, -131087, 0, 10, -196623, 0, 10, -262159, 0, 10, -327695, 0, 10, -393231, 0, 10, -458767, 0, 10, -524303, 0, 10, -589839, 0, 10, -655375, 0, 10, 65550, 0, 10, 14, 0, 10, -65522, 0, 10, -131058, 0, 10, -196594, 0, 10, -262130, 0, 10, -327666, 0, 10, -393202, 0, 10, -458738, 0, 10, -524274, 0, 10, -589810, 0, 10, -655346, 0, 10, -720882, 0, 10, -786418, 0, 10, -851954, 0, 10, -720911, 0, 10, -786447, 0, 10, -851983, 0, 10, -851982, 0, 10, -851981, 0, 10, -851980, 0, 10, -851979, 0, 10, -851978, 0, 10, -851977, 0, 10, -851976, 0, 10, -851975, 0, 10, -851974, 0, 10, -851973, 0, 10, -851972, 0, 10, -851971, 0, 10, -851970, 0, 10, -851969, 0, 10, -917504, 0, 10, -917503, 0, 10, -917502, 0, 10, -917501, 0, 10, -917500, 0, 10, -917499, 0, 10, -917498, 0, 10, -917497, 0, 10, -917496, 0, 10, -917495, 0, 10, -917494, 0, 10, -917493, 0, 10, -917492, 0, 10, -917491, 0, 10, -917490, 0, 10, 131086, 0, 10, 131085, 0, 10, 131084, 0, 10, 131083, 0, 10, 131082, 0, 10, 131081, 0, 10, 131080, 0, 10, 131079, 0, 10, 131078, 0, 10, 131077, 0, 10, 131076, 0, 10, 131075, 0, 10, 131074, 0, 10, 131073, 0, 10, 131072, 0, 10, 196607, 0, 10, 196606, 0, 10, 196605, 0, 10, 196604, 0, 10, 196603, 0, 10, 196602, 0, 10, 196601, 0, 10, 196600, 0, 10, 196599, 0, 10, 196598, 0, 10, 196597, 0, 10, 196596, 0, 10, 196595, 0, 10, 196594, 0, 10, 196593, 0, 10)
+
+[node name="tileset_objects" parent="." index="1" instance=ExtResource("3_wupxo")]
+position = Vector2(1, 0)
+
+[node name="tileset_main_precise" parent="." index="2" instance=ExtResource("4_b31uc")]
+
+[node name="tileset_objects_precise" parent="." index="3" instance=ExtResource("5_6k4f8")]
+
+[node name="triggers" type="Node2D" parent="." index="4"]
+
+[node name="objects" type="Node2D" parent="." index="5"]
+
+[node name="zones" type="Node2D" parent="." index="6"]
+
+[node name="Player" parent="." index="11"]
+position = Vector2(528, -608)
+
+[node name="camera" parent="." index="14"]
+position = Vector2(0, -352)
+
+[node name="cooldown_spawn_entity" type="Timer" parent="." index="15"]
+wait_time = 0.6
+autostart = true
+
+[node name="entity_spawn_pos_marker" type="ColorRect" parent="." index="16"]
+custom_minimum_size = Vector2(64, 64)
+offset_left = -32.0
+offset_top = -189.0
+offset_right = 32.0
+offset_bottom = -125.0
+pivot_offset = Vector2(32, 32)
+color = Color(0.360784, 0, 0, 0.435294)
+script = ExtResource("6_5agn5")
+
+[node name="ColorRect" type="ColorRect" parent="entity_spawn_pos_marker" index="0"]
+modulate = Color(1, 0, 0, 0.443137)
+layout_mode = 0
+offset_left = 18.6982
+offset_top = 16.0
+offset_right = 60.6982
+offset_bottom = 21.0
+rotation = 0.832541
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="entity_spawn_pos_marker" index="1"]
+modulate = Color(1, 0, 0, 0.443137)
+layout_mode = 0
+offset_left = 15.3964
+offset_top = 46.839
+offset_right = 57.3964
+offset_bottom = 51.839
+rotation = -0.824579
+mouse_filter = 2
+
+[node name="cooldown_check_entity_count" type="Timer" parent="." index="17"]
+wait_time = 4.0
+autostart = true
+
+[node name="entity_editor_full" parent="." index="18" instance=ExtResource("7_h35e0")]
+offset_left = -960.0
+offset_top = -896.0
+offset_right = -960.0
+offset_bottom = -896.0
+
+[node name="Button" type="Button" parent="." index="19"]
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 496.0
+offset_bottom = 127.0
+text = "Click here to disable decoration for better performance."
+
+[node name="ColorRect" type="ColorRect" parent="Button" index="0"]
+z_index = 1000
+layout_mode = 0
+offset_left = -128.0
+offset_top = -384.0
+offset_right = 368.0
+offset_bottom = -368.0
+rotation = 0.780024
+color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Button" index="1"]
+z_index = 1000
+layout_mode = 0
+offset_left = 106.0
+offset_top = -66.0
+offset_right = 214.0
+offset_bottom = -50.0
+rotation = 0.216744
+color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Button" index="2"]
+z_index = 1000
+layout_mode = 0
+offset_left = 196.0
+offset_top = -139.0
+offset_right = 304.0
+offset_bottom = -123.0
+rotation = 1.34781
+color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Button" index="3"]
+z_index = 1000
+layout_mode = 0
+offset_left = 199.0
+offset_top = 86.0
+offset_right = 328.0
+offset_bottom = 92.0
+rotation = -0.358178
+
+[node name="ColorRect5" type="ColorRect" parent="Button" index="4"]
+z_index = 1000
+layout_mode = 0
+offset_left = 257.0
+offset_top = 37.0
+offset_right = 322.0
+offset_bottom = 47.0
+rotation = 0.0754712
+
+[node name="ColorRect6" type="ColorRect" parent="Button" index="5"]
+z_index = 1000
+layout_mode = 0
+offset_left = 321.0
+offset_top = 48.0
+offset_right = 368.0
+offset_bottom = 57.0
+rotation = 2.1271
+
+[node name="Node2D" type="Node2D" parent="." index="20"]
+
+[node name="decoration_gear" parent="Node2D" index="0" instance=ExtResource("8_wupxo")]
+z_index = -10
+position = Vector2(-848, 208)
+
+[node name="decoration_gear2" parent="Node2D" index="1" instance=ExtResource("8_wupxo")]
+z_index = 5
+position = Vector2(480, 320)
+
+[node name="decoration_gear3" parent="Node2D" index="2" instance=ExtResource("8_wupxo")]
+z_index = -10
+position = Vector2(640, 240)
+
+[node name="decoration_gear4" parent="Node2D" index="3" instance=ExtResource("8_wupxo")]
+z_index = 5
+position = Vector2(1056, -608)
+
+[node name="decoration_gear5" parent="Node2D" index="4" instance=ExtResource("8_wupxo")]
+z_index = -10
+position = Vector2(-608, -928)
+
+[node name="decoration_gear6" parent="Node2D" index="5" instance=ExtResource("8_wupxo")]
+z_index = -10
+position = Vector2(992, -240)
+
+[node name="Label" type="Label" parent="." index="21"]
+offset_left = 96.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 82.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 22
+text = "Press R to restart the level."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." index="22"]
+offset_left = -80.0
+offset_top = -16.0
+offset_right = 592.0
+offset_bottom = 31.6667
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 16
+text = "You can drag the spawn position marker around, as well as the player
+character, by clicking and holding the left mouse button!"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="." index="23"]
+visible = false
+offset_left = 16.0
+offset_top = -800.0
+offset_right = 64.0
+offset_bottom = -752.0
+theme = ExtResource("9_b31uc")
+text = "+"
+
+[node name="Button3" type="Button" parent="." index="24"]
+visible = false
+offset_left = -64.0
+offset_top = -800.0
+offset_right = -16.0
+offset_bottom = -752.0
+theme = ExtResource("9_b31uc")
+text = "-"
+
+[node name="Button4" type="Button" parent="." index="25"]
+visible = false
+offset_left = -880.0
+offset_top = -816.0
+offset_right = -508.0
+offset_bottom = -784.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 16
+text = "Click to delete every entity currently on screen."
+
+[node name="Label3" type="Label" parent="." index="26"]
+offset_left = -336.0
+offset_top = -832.0
+offset_right = 336.0
+offset_bottom = -784.333
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 16
+text = "Change the entity respawn rate."
+horizontal_alignment = 1
+
+[node name="Button5" type="Button" parent="." index="27"]
+visible = false
+offset_left = 464.0
+offset_top = -768.0
+offset_right = 836.0
+offset_bottom = -720.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 16
+text = "Click to spawn a fully randomized entity."
+
+[node name="Button6" type="Button" parent="." index="28"]
+visible = false
+offset_left = -256.0
+offset_top = -736.0
+offset_right = 256.0
+offset_bottom = -694.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 12
+text = "Click to limit the present entity count to ONE at a time
+(or to disable the limit)."
+
+[node name="Button7" type="Button" parent="." index="29"]
+visible = false
+offset_left = -832.0
+offset_top = -768.0
+offset_right = -560.0
+offset_bottom = -743.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 12
+text = "Click to reset all entity behavior."
+
+[node name="Button8" type="Button" parent="." index="30"]
+visible = false
+offset_left = 400.0
+offset_top = -816.0
+offset_right = 879.0
+offset_bottom = -774.0
+theme = ExtResource("9_b31uc")
+theme_override_font_sizes/font_size = 24
+text = "Click to spawn a premade entity."
+
+[connection signal="timeout" from="cooldown_spawn_entity" to="." method="_on_cooldown_spawn_entity_timeout"]
+[connection signal="gui_input" from="entity_spawn_pos_marker" to="entity_spawn_pos_marker" method="_on_gui_input"]
+[connection signal="timeout" from="cooldown_check_entity_count" to="." method="_on_cooldown_check_entity_count_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="Button8" to="." method="_on_button_8_pressed"]

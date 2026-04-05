@@ -1,0 +1,177 @@
+[gd_scene load_steps=4 format=3 uid="uid://brq5lj34lrcoi"]
+
+[ext_resource type="Script" uid="uid://dfy3sxwaluito" path="res://entity_editor_button.gd" id="1_an0wt"]
+[ext_resource type="PackedScene" uid="uid://iqc2mtwkiuud" path="res://Other/Scenes/User Interface/Text Manager/text_manager.tscn" id="2_v1opg"]
+[ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="3_g7kw1"]
+
+[node name="entity_editor_button_Array" type="Button"]
+custom_minimum_size = Vector2(220, 16)
+offset_right = 220.0
+offset_bottom = 16.0
+flat = true
+script = ExtResource("1_an0wt")
+type = "Array"
+
+[node name="bg" type="ColorRect" parent="."]
+self_modulate = Color(0.160784, 0.160784, 0.160784, 1)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="text_manager" parent="bg" groups=["deco", "important"] instance=ExtResource("2_v1opg")]
+layout_mode = 1
+scale = Vector2(0.5, 0.5)
+cooldown_next_character = 0.01
+
+[node name="display_value" type="Control" parent="."]
+visible = false
+z_index = 500
+layout_mode = 3
+anchors_preset = 0
+offset_left = -128.0
+offset_top = -192.0
+offset_right = 384.0
+offset_bottom = -64.0
+mouse_filter = 2
+
+[node name="bg" type="ColorRect" parent="display_value"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="label_property_name" type="Label" parent="display_value"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 384.0
+offset_bottom = 32.0
+text = "none"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_property_value_type" type="Label" parent="display_value"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "none"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="outline1" type="ColorRect" parent="." groups=["deco"]]
+z_index = 10
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="outline2" type="ColorRect" parent="." groups=["deco"]]
+z_index = 10
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="outline3" type="ColorRect" parent="." groups=["deco"]]
+z_index = 10
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="outline4" type="ColorRect" parent="." groups=["deco"]]
+z_index = 10
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="container_choices" type="Control" parent="."]
+visible = false
+z_index = 200
+custom_minimum_size = Vector2(1800, 768)
+anchors_preset = 0
+offset_left = -768.0
+offset_top = -384.0
+offset_right = 1032.0
+offset_bottom = 384.0
+
+[node name="container" type="GridContainer" parent="container_choices"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+columns = 6
+
+[node name="bg" type="ColorRect" parent="container_choices"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="container_choices"]
+z_index = 250
+layout_mode = 0
+offset_left = 864.0
+offset_top = 656.0
+offset_right = 976.0
+offset_bottom = 704.0
+theme = ExtResource("3_g7kw1")
+text = "close"
+
+[node name="scan_visible_right" type="VisibleOnScreenNotifier2D" parent="container_choices"]
+z_index = 750
+position = Vector2(1792, 384)
+
+[node name="scan_visible_left" type="VisibleOnScreenNotifier2D" parent="container_choices"]
+z_index = 750
+position = Vector2(0, 384)
+
+[node name="scan_visible_top" type="VisibleOnScreenNotifier2D" parent="container_choices"]
+z_index = 750
+position = Vector2(1024, 0)
+
+[node name="scan_visible_bottom" type="VisibleOnScreenNotifier2D" parent="container_choices"]
+z_index = 750
+position = Vector2(1024, 768)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="gui_input" from="container_choices" to="." method="_on_container_choices_gui_input"]
+[connection signal="pressed" from="container_choices/Button" to="." method="_on_button_pressed"]

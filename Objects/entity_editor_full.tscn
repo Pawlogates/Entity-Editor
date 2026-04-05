@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnm366ngimnm3"]
+
+[ext_resource type="Script" uid="uid://bls4cml41vnth" path="res://Objects/entity_editor_full.gd" id="1_leg0a"]
+[ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="2_dkowj"]
+[ext_resource type="PackedScene" uid="uid://dgb361xj37pqy" path="res://Other/Scenes/sfx_manager.tscn" id="3_q3g6h"]
+
+[node name="entity_editor_full" type="Control" groups=["entity_editor"]]
+z_index = 500
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_leg0a")
+
+[node name="container_property_buttons" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 1056.0
+columns = 10
+
+[node name="toggle_properties_visible" type="Button" parent="."]
+z_index = 501
+layout_mode = 0
+offset_left = 112.0
+offset_top = 992.0
+offset_right = 532.0
+offset_bottom = 1068.0
+theme = ExtResource("2_dkowj")
+text = "Click here toggle visibility of the properties
+(or just press Q)."
+
+[node name="cooldown_fade" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="sfx_manager" parent="." instance=ExtResource("3_q3g6h")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_right = 1408.0
+offset_bottom = 34.0
+theme = ExtResource("2_dkowj")
+theme_override_font_sizes/font_size = 20
+text = "Click on any rectangle in order to affect the entity behavior."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="toggle_properties_visible" to="." method="_on_toggle_properties_visible_pressed"]
+[connection signal="timeout" from="cooldown_fade" to="." method="_on_cooldown_fade_timeout"]

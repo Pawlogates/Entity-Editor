@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq1eeyvohwrxj"]
+
+[ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="1_ck01b"]
+[ext_resource type="Script" uid="uid://beppcipy1dji7" path="res://entity_editor_choice.gd" id="2_311l4"]
+
+[node name="entity_editor_choice" type="Button"]
+z_index = 100
+custom_minimum_size = Vector2(160, 16)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1760.0
+offset_bottom = -1064.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ck01b")
+text = "none"
+script = ExtResource("2_311l4")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

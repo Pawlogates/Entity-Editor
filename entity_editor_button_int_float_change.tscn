@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn6s2p2glgn0g"]
+
+[ext_resource type="Script" uid="uid://bfc4grys8ksc1" path="res://entity_editor_button_int_float_change.gd" id="1_dhcm2"]
+
+[node name="entity_editor_button_int_float_change" type="Button"]
+custom_minimum_size = Vector2(32, 32)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_dhcm2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
