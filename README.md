@@ -1,15 +1,13 @@
-This project is a (work in progress) 2d platformer with quicksave support, nonlinear area transitions
-with every object's state persisting between them, smooth background layers replacement behaviour, a cool scoring system,
-an enemy/block/collectible behaviour editor used for easily creating complex objects behaviour, and A LOT more.
-Also if you enjoy the game, consider replaying it and aiming for a higher score! The scoring mechanics in this game
-were a big focus for me.
+This editor (made in Godot Engine) lets You create various types of complex objects, using the E.N.T.I.T.Y system from my game - Exponaut.
 
-My discord nickname is Pawlogates, if you'd like to ask me something.
+Creating this system/tool has consumed so much of my time, that I wasn't really able to actually USE it to make stuff! But now maybe you might :3
 
-Some gameplay footage:
+The Entity Editor, allows You to edit a vast collection of object behaviors that don't negate eachother. Any "entity", be it a collectible, enemy, boss (a chain of entities that spawn eachother on death), box (a destructible entity spawner), projectile or special block, is technically the same object.
 
-https://youtu.be/qaXYe8hZ9hQ?si=J8tlaosNlE2Pj0Ue
-https://youtu.be/debLkyOLT00?si=cIhpdgZT_2ftoS8F
-https://youtu.be/U1-YAEV2icw?si=JpQKHW6C5Hn2nWVC
-https://youtu.be/yOmrWKeANKo?si=8a30SSQRHvXZ5zyv
-https://youtu.be/g6wDwp3LAl4?si=IHc7IZ0RBmBINjJx
+This allows You to create complex objects, at a very high speed, with minimal hardcoded behavior.
+
+This system has been improved and isolated from my (still actively developed) game called "Exponaut": A nonlinearity, replayability and scoring based 2D platformer, filled with globally active mechanics, but severely lacking in terms of level design actually utilizing those aspects...
+
+Feel free to message me on discord, if you have any questions in regards to this project, or the game (my name is "pawlogates").
+
+You can also join the discord server (https://discord.gg/W3Xmky5Wue) to check how the project's development is going :)
