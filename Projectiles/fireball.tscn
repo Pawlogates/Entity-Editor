@@ -39,5 +39,8 @@ entity_type = "projectile"
 [node name="sprite" parent="." index="0"]
 sprite_frames = ExtResource("2_w0vbj")
 
+[node name="animation_gear" parent="sprite" index="11"]
+unique_name_in_owner = true
+
 [node name="collision_hitbox" parent="hitbox" index="0"]
 shape = SubResource("RectangleShape2D_w0vbj")

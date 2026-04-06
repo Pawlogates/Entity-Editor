@@ -57,7 +57,7 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 7
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 12
-text = "Welcome to the E.N.T.I.T.Y showcase project! (one of the
+text = "Welcome to the E.N.T.I.T.Y showcase project! It's one of the
 various systems developed for my game - Exponaut, coding of
 which was taking so much time, that I wasn't really
 able to actually USE them to make stuff! But maybe you might :3
@@ -269,7 +269,7 @@ scale = Vector2(0.25, 0.25)
 
 [node name="decoration_gear4" parent="." instance=ExtResource("3_2twy5")]
 z_index = -8
-position = Vector2(16, 384)
+position = Vector2(9.53674e-07, 384)
 scale = Vector2(0.2, 0.2)
 
 [node name="decoration_gear2" parent="." instance=ExtResource("3_2twy5")]
@@ -280,7 +280,7 @@ scale = Vector2(0.15, 0.15)
 [node name="decoration_gear3" parent="." instance=ExtResource("3_2twy5")]
 modulate = Color(0.277528, 0.277528, 0.277528, 1)
 z_index = 4
-position = Vector2(410, 408)
+position = Vector2(400, 560)
 scale = Vector2(0.2, 0.2)
 
 [node name="LinkButton" type="LinkButton" parent="."]

@@ -29,6 +29,7 @@ extends CharacterBody2D
 @onready var animation_all: AnimationPlayer = %animation_all
 @onready var animation_general: AnimationPlayer = %animation_general
 @onready var animation_color: AnimationPlayer = %animation_color
+@onready var animation_gear: AnimationPlayer = %animation_gear
 
 @onready var collision_main: CollisionShape2D = $collision_main
 @onready var hitbox: Area2D = $hitbox
@@ -990,6 +991,7 @@ func basic_on_active():
 	sprite.visible = true
 	
 	if not ignore_collision : collision_main.disabled = false
+	else : collision_main.disabled = true
 	
 	t_state_attacking.set_paused(false)
 	t_state_damage.set_paused(false)

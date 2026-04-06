@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wgtcgh1uo037"]
+[gd_scene load_steps=15 format=3 uid="uid://wgtcgh1uo037"]
 
 [ext_resource type="Script" uid="uid://bk66d2tjq15q" path="res://Scripts/entity.gd" id="1_wx0ek"]
 [ext_resource type="PackedScene" uid="uid://v151qvyxpbng" path="res://Other/Scenes/sprite.tscn" id="2_1y7wk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgb361xj37pqy" path="res://Other/Scenes/sfx_manager.tscn" id="3_c3p0q"]
 [ext_resource type="PackedScene" uid="uid://cd1ras6qhwjqa" path="res://Other/Scenes/animation_all.tscn" id="4_84r7y"]
 [ext_resource type="PackedScene" uid="uid://chhjmdc7imc7k" path="res://Other/Scenes/animation_color.tscn" id="5_fjle6"]
+[ext_resource type="PackedScene" uid="uid://bgcgpxrksdo80" path="res://Other/Scenes/animation_gear.tscn" id="6_84r7y"]
 [ext_resource type="Script" uid="uid://12wkcbpatg3w" path="res://Enemies/general_timers_core.gd" id="7_fjle6"]
 [ext_resource type="PackedScene" uid="uid://wn4ag4k6r2t5" path="res://Other/Entity Behaviors/scan_patrolling_vision.tscn" id="7_spxko"]
 
@@ -39,6 +40,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="animation_color" parent="sprite" instance=ExtResource("5_fjle6")]
+unique_name_in_owner = true
+
+[node name="animation_gear" parent="sprite" instance=ExtResource("6_84r7y")]
 unique_name_in_owner = true
 
 [node name="timer_state_attacking" type="Timer" parent="sprite"]

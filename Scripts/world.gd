@@ -355,12 +355,16 @@ func _ready():
 	
 	await get_tree().create_timer(24, false).timeout
 	
+	if Globals.random_bool(3, 1) : _on_button_pressed()
+	
 	if is_instance_valid(button) : button.scale = Vector2(1, 1)
 	
-	await get_tree().create_timer(24, false).timeout
+	await get_tree().create_timer(64, false).timeout
 	
 	if $Label : $Label.queue_free()
 	if $Label2 : $Label2.queue_free()
+	
+	_on_button_pressed()
 	
 	# Force performance mode:
 	#if entity_editor:
@@ -385,6 +389,7 @@ func _ready():
 #MAIN START
 func _physics_process(delta):
 	if is_instance_valid(button) and button.scale.x != 1 : button.modulate = Color(Globals.l_color_all.pick_random())
+	elif is_instance_valid(button) : button.modulate = Color.WHITE
 	
 	# Current level's playtime.
 	level_time = Time.get_ticks_msec() - level_start_time
@@ -1060,7 +1065,9 @@ func _on_cooldown_check_entity_count_timeout() -> void:
 
 
 func _on_cooldown_spawn_entity_timeout() -> void:
-	if Globals.random_bool(1, 1) : camera.position = Vector2(0, -352)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if Globals.random_bool(1, 1) and not camera.position.y == -352 : camera.position = Vector2(0, -352)
 	
 	if limit_entity_count_to_one:
 		if len(get_tree().get_nodes_in_group("entity")): # If more (or less...) than 0.
@@ -1082,11 +1089,18 @@ func _on_cooldown_spawn_entity_timeout() -> void:
 	Globals.projectile_shot.emit()
 
 
+var deco_hidden : bool = false
+
 func _on_button_pressed() -> void:
+	if deco_hidden : return
+	deco_hidden = true
+	
 	Globals.message("Performance mode has been enabled (actually it's more like 'actually usable' mode...)")
 	
 	if get_node_or_null("Node2D"):
 		$Node2D.queue_free()
+	else:
+		return
 	
 	for x in get_tree().get_nodes_in_group("deco") + get_tree().get_nodes_in_group("text_manager"):
 		if x.is_in_group("text_manager"):

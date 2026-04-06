@@ -186,6 +186,8 @@ func handle_String():
 
 
 func _on_pressed() -> void:
+	if type != "bool" and type != "String": Globals.World.camera.override_camera_pos = position - Vector2(1600/2, 1100/2)
+	
 	Globals.spawn_scenes(entity_editor, Globals.scene_particle_star, 4, position + size / 2 + Vector2(32, 32) + Vector2(randi_range(-32, 32), randi_range(-16, 16)))
 	Globals.spawn_scenes(entity_editor, Globals.scene_particle_special, 4, position + size / 2 + Vector2(32, 32) + Vector2(randi_range(-32, 32), randi_range(-16, 16)))
 	entity_editor.sfx_manager.sfx_play(Globals.l_sfx_menu_stabilize.pick_random(), randf_range(0.75, 1.25), randf_range(0.75, 1.25))
@@ -256,6 +258,9 @@ func check_value():
 
 
 func _on_mouse_entered() -> void:
+	entity_editor.fade_out = false
+	entity_editor.cooldown_fade.start()
+	
 	bg.self_modulate *= 0.8
 	
 	if is_instance_valid(display_value):
@@ -266,7 +271,7 @@ func _on_mouse_entered() -> void:
 		elif position.x > 1500:
 			display_value.position.x = -320
 		else:
-			display_value.position.x = -display_value.size.x/2 + size.x/2
+			display_value.position.x = -display_value.size.x/2 + size.x/2 + 36
 	
 	var new_text_manager = Globals.scene_text_manager.instantiate()
 	
@@ -339,6 +344,8 @@ func apply_value():
 
 
 func _on_button_pressed() -> void:
+	Globals.World.camera.override_camera_pos = Vector2.ZERO
+	
 	$container_choices.visible = Globals.opposite_bool($container_choices.visible)
 	for property_button in get_parent().get_children():
 			property_button.mouse_filter = 0
@@ -351,6 +358,8 @@ func _on_container_choices_gui_input(event: InputEvent) -> void:
 
 
 func _on_btn_close_pressed() -> void:
+	Globals.World.camera.override_camera_pos = Vector2.ZERO
+	
 	$container_buttons.visible = Globals.opposite_bool($container_buttons.visible)
 	for property_button in get_parent().get_children():
 		property_button.mouse_filter = 0

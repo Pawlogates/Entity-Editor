@@ -75,17 +75,19 @@ func _physics_process(delta: float) -> void:
 		if container_property_buttons.visible:
 			for node in Globals.World.get_children():
 				if node is Button:
-					node.visible = false
+					if not node.is_in_group("important"):
+						node.visible = false
 		
 		else:
 			for node in Globals.World.get_children():
 				if node is Button:
-					node.visible = true
+					if not node.is_in_group("important"):
+						node.visible = true
 		
 		#for property_button in container_property_buttons.get_children():
 			#property_button.check_property_name()
 	
-	if fade_out : modulate.a = move_toward(modulate.a, 0.25, delta / 4)
+	if fade_out : modulate.a = move_toward(modulate.a, 0.4, delta / 4)
 	else : modulate.a = 1.0
 
 
@@ -110,12 +112,16 @@ func _on_toggle_properties_visible_pressed() -> void:
 	if container_property_buttons.visible:
 		for node in Globals.World.get_children():
 			if node is Button:
-				node.visible = false
+				print(node.get_groups())
+				if not node.is_in_group("important"):
+					node.visible = false
 	
 	else:
 		for node in Globals.World.get_children():
 			if node is Button:
-				node.visible = true
+				print(node.get_groups())
+				if not node.is_in_group("important"):
+					node.visible = true
 
 
 @onready var cooldown_fade: Timer = $cooldown_fade

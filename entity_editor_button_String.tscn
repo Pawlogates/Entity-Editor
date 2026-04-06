@@ -145,14 +145,27 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="container_choices"]
+modulate = Color(1, 0.362983, 0.339375, 1)
 z_index = 250
 layout_mode = 0
 offset_left = 864.0
 offset_top = 656.0
 offset_right = 976.0
 offset_bottom = 704.0
+scale = Vector2(2, 2)
 theme = ExtResource("3_nsi87")
-text = "close"
+text = "CLOSE"
+
+[node name="ColorRect" type="ColorRect" parent="container_choices/Button"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.212305, 0.212305, 0.212305, 1)
 
 [node name="scan_visible_right" type="VisibleOnScreenNotifier2D" parent="container_choices"]
 z_index = 750

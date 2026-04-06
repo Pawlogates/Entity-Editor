@@ -46,6 +46,31 @@ text = "Click on any rectangle in order to affect the entity behavior."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 500
+layout_mode = 0
+offset_left = 1584.0
+offset_top = 944.0
+offset_right = 1936.0
+offset_bottom = 1088.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 352.0
+offset_bottom = 160.0
+theme = ExtResource("2_dkowj")
+theme_override_font_sizes/font_size = 20
+text = "Controls:
+Q - Show / hide the editor
+Z / SPACE - Zoom camera in / out
+ESC - Open menu | R - Restart
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="toggle_properties_visible" to="." method="_on_toggle_properties_visible_pressed"]
 [connection signal="timeout" from="cooldown_fade" to="." method="_on_cooldown_fade_timeout"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnl3u7qcwj0nk"]
+[gd_scene load_steps=3 format=3 uid="uid://cnl3u7qcwj0nk"]
 
 [ext_resource type="Script" uid="uid://cf4icmv3e4xlx" path="res://Other/Scenes/camera.gd" id="1_qqftx"]
+[ext_resource type="Texture2D" uid="uid://6bcmysg3rwj8" path="res://Assets/Graphics/backgrounds/bg_edge_black.png" id="2_f337c"]
 
 [node name="camera" type="Camera2D" groups=["camera", "player_camera"]]
 process_mode = 3
@@ -9,3 +10,86 @@ ignore_rotation = false
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 script = ExtResource("1_qqftx")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 500
+offset_left = -1105.0
+offset_top = 15.0
+offset_right = 759.0
+offset_bottom = 555.0
+scale = Vector2(1.12, 1)
+mouse_filter = 2
+texture = ExtResource("2_f337c")
+expand_mode = 1
+
+[node name="ColorRect2" type="TextureRect" parent="ColorRect"]
+offset_left = 647.0
+offset_top = -1131.0
+offset_right = 2648.0
+offset_bottom = -591.0
+rotation = 1.5708
+scale = Vector2(0.834285, 1)
+mouse_filter = 2
+texture = ExtResource("2_f337c")
+expand_mode = 1
+
+[node name="ColorRect3" type="TextureRect" parent="ColorRect"]
+offset_left = 1840.0
+offset_top = -30.0
+offset_right = 3348.0
+offset_bottom = 510.0
+rotation = 3.14159
+scale = Vector2(1.12, 1)
+mouse_filter = 2
+texture = ExtResource("2_f337c")
+expand_mode = 1
+
+[node name="ColorRect4" type="TextureRect" parent="ColorRect"]
+offset_left = 1321.0
+offset_top = 812.0
+offset_right = 2733.0
+offset_bottom = 1352.0
+rotation = 4.71239
+scale = Vector2(1.12, 1)
+mouse_filter = 2
+texture = ExtResource("2_f337c")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = -1089.0
+offset_top = -1405.0
+offset_right = 108.0
+offset_bottom = 1495.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1850.0
+offset_top = -1299.0
+offset_right = 2854.0
+offset_bottom = 1428.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 540.0
+offset_right = 719.0
+offset_bottom = 2730.0
+scale = Vector2(2.82198, 0.717842)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = -1499.0
+offset_right = 711.0
+offset_bottom = -970.5
+scale = Vector2(2.82198, 1.75784)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

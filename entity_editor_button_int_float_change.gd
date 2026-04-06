@@ -11,6 +11,11 @@ func _ready() -> void:
 	property_button = get_parent().get_parent().get_parent()
 	entity_editor = get_tree().get_first_node_in_group("entity_editor")
 	
+	await get_tree().create_timer(1, true).timeout
+	
+	if "cooldown" in property_button.property_name:
+		add_value /= 100
+	
 	text = str(add_value)
 
 

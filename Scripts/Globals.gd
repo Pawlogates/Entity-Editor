@@ -375,36 +375,36 @@ func handle_actions(delta):
 	handle_zoom(delta)
 	
 	
-	if Input.is_action_just_pressed("quicksave"):
-		SaveData.save_levelState(level_id, int(SaveData.slot_current))
-	elif Input.is_action_just_pressed("quickload"):
-		SaveData.load_levelState(level_id, int(SaveData.slot_current))
+	#if Input.is_action_just_pressed("quicksave"):
+		#SaveData.save_levelState(level_id, int(SaveData.slot_current))
+	#elif Input.is_action_just_pressed("quickload"):
+		#SaveData.load_levelState(level_id, int(SaveData.slot_current))
+	#
+	#
+	#elif Input.is_action_pressed("ctrl"):
+		#for x in range(10):
+			#if Input.is_action_just_pressed(str(x)):
+				#dm(str("Saving a quicksave (quicksave id: '%s')." % x))
+				#SaveData.save_levelState(level_id, x)
+	#
+	#elif Input.is_action_pressed("shift"):
+		#
+		#for x in range(10):
+			#if Input.is_action_just_pressed(str(x)):
+				#await Overlay.animation("black_fade_in", 2.0, false, true, 0.0)
+				#
+				#dm(str("Loading a quicksave (quicksave id: '%s')." % x))
+				#SaveData.load_levelState(level_id, x)
+				#
+				#Overlay.animation("black_fade_out", 2.0, false, false)
 	
 	
-	elif Input.is_action_pressed("ctrl"):
-		for x in range(10):
-			if Input.is_action_just_pressed(str(x)):
-				dm(str("Saving a quicksave (quicksave id: '%s')." % x))
-				SaveData.save_levelState(level_id, x)
-	
-	elif Input.is_action_pressed("shift"):
+	if Input.is_action_just_pressed("jump"):
 		
-		for x in range(10):
-			if Input.is_action_just_pressed(str(x)):
-				await Overlay.animation("black_fade_in", 2.0, false, true, 0.0)
-				
-				dm(str("Loading a quicksave (quicksave id: '%s')." % x))
-				SaveData.load_levelState(level_id, x)
-				
-				Overlay.animation("black_fade_out", 2.0, false, false)
-	
-	
-	elif Input.is_action_pressed("alt"):
+		#if Input.is_action_just_pressed("1"):
+			#reload_level_scene(true)
 		
-		if Input.is_action_just_pressed("1"):
-			reload_level_scene(true)
-		
-		if Input.is_action_just_pressed("2"):
+		if World.entity_editor:
 			if not target_camera:
 				target_camera = get_tree().get_first_node_in_group("camera")
 				dm("Reassigning the camera target node.")
@@ -414,7 +414,7 @@ func handle_actions(delta):
 			elif camera_manual_active:
 				camera_manual_active = false
 				target_camera.position_smoothing_enabled = true
-				target_camera.position = Vector2(0, 0)
+				#target_camera.position = Vector2(0, 0)
 			
 			elif not camera_manual_active:
 				camera_manual_active = true
@@ -1136,7 +1136,9 @@ var next_reassign_camera : bool = true
 func handle_zoom(delta):
 	if target_camera:
 		if camera_manual_active:
-			target_camera.position = lerp(target_camera.position, Player.get_local_mouse_position(), delta * 4)
+			target_camera.target_zoom = lerp(target_camera.target_zoom, Vector2(3, 3), delta * 4) ; target_camera.target_offset = lerp(target_camera.target_offset, World.get_local_mouse_position() + Vector2(0, 352), delta * 8)
+		else:
+			target_camera.target_zoom = lerp(target_camera.target_zoom, Vector2(1, 1), delta * 8) ; target_camera.target_offset = lerp(target_camera.target_offset, Vector2(0, 0), delta * 2)
 	
 	if Input.is_action_pressed("zoom_out"):
 		
@@ -1144,23 +1146,11 @@ func handle_zoom(delta):
 			target_camera = get_tree().get_first_node_in_group("camera")
 			message_debug("Reassigning the camera target node.")
 		
-		target_camera.zoom.x = move_toward(target_camera.zoom.x, 0.1, 0.01 * delta * 50 * zoom_multiplier)
-		target_camera.zoom.y = move_toward(target_camera.zoom.y, 0.1, 0.01 * delta * 50 * zoom_multiplier)
+		#target_camera.zoom.x = move_toward(target_camera.zoom.x, 0.1, 0.01 * delta * 50 * zoom_multiplier)
+		#target_camera.zoom.y = move_toward(target_camera.zoom.y, 0.1, 0.01 * delta * 50 * zoom_multiplier)
 		
-		if target_camera.zoom.x < 0.25:
-			zoom_multiplier = 0.25
-			
-		elif target_camera.zoom.x < 0.5:
-			zoom_multiplier = 0.35
-			
-		elif target_camera.zoom.x < 0.75:
-			zoom_multiplier = 0.5
-			
-		elif target_camera.zoom.x > 1.2:
-			zoom_multiplier = 1.5
-			
-		else:
-			zoom_multiplier = 1
+		if is_instance_valid(target_camera):
+			target_camera.target_zoom - Vector2(0.2, 0.2)
 		
 		message_debug(str(target_camera.zoom.x) + " is the current zoom. " + str(zoom_multiplier) + " is the current zoom_multiplier")
 	
@@ -1171,23 +1161,26 @@ func handle_zoom(delta):
 			target_camera = get_tree().get_first_node_in_group("camera")
 			message_debug("Reassigning the camera target node.")
 		
-		target_camera.zoom.x = move_toward(target_camera.zoom.x, 2, 0.01 * delta * 50 * zoom_multiplier)
-		target_camera.zoom.y = move_toward(target_camera.zoom.y, 2, 0.01 * delta * 50 * zoom_multiplier)
+		#target_camera.zoom.x = move_toward(target_camera.zoom.x, 2, 0.01 * delta * 50 * zoom_multiplier)
+		#target_camera.zoom.y = move_toward(target_camera.zoom.y, 2, 0.01 * delta * 50 * zoom_multiplier)
 		
-		if target_camera.zoom.x < 0.25:
-			zoom_multiplier = 0.25
-			
-		elif target_camera.zoom.x < 0.5:
-			zoom_multiplier = 0.35
-			
-		elif target_camera.zoom.x < 0.75:
-			zoom_multiplier = 0.5
-			
-		elif target_camera.zoom.x > 1.2:
-			zoom_multiplier = 1.5
-			
-		else:
-			zoom_multiplier = 1
+		if is_instance_valid(target_camera):
+			target_camera.target_zoom + Vector2(0.2, 0.2)
+		
+		#if target_camera.zoom.x < 0.25:
+			#zoom_multiplier = 0.25
+			#
+		#elif target_camera.zoom.x < 0.5:
+			#zoom_multiplier = 0.35
+			#
+		#elif target_camera.zoom.x < 0.75:
+			#zoom_multiplier = 0.5
+			#
+		#elif target_camera.zoom.x > 1.2:
+			#zoom_multiplier = 1.5
+			#
+		#else:
+			#zoom_multiplier = 1
 		
 		message_debug(str(target_camera.zoom.x) + " is the current zoom. " + str(zoom_multiplier) + " is the current zoom_multiplier.")
 	

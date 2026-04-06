@@ -22,6 +22,7 @@ func _ready():
 			
 			if property_name == "entity" : continue
 			
+			
 			d_properties_all.get_or_add(property_name, property_value)
 			
 			
@@ -73,7 +74,7 @@ func _ready():
 						entity.set(property_name, Globals.l_entity_movement_all.pick_random())
 			
 			if property_name == "limit_spawn_entity_cooldown":
-				entity.set(property_name, Globals.random_bool(1, 23))
+				entity.set(property_name, Globals.random_bool(1, 49))
 			
 			if "can_move" in property_name:
 				entity.set(property_name, true)
@@ -87,5 +88,12 @@ func _ready():
 				entity.set(property_name, randf_range(2, 24))
 			elif property_name == "text_next_character_cooldown":
 				entity.set(property_name, randf_range(0.01, 2))
+			
+			
+			if property_name == "ignore_collision" : entity.set(property_name, Globals.random_bool(7, 1))
+			
+			if property_name == "start_animation":
+				if Globals.random_bool(1, 1):
+					entity.set(property_name, (Globals.l_animation_name_gear_all + Globals.l_animation_name_general_all).pick_random())
 	
 	SaveData.save_file(Globals.dirpath_saves + "/" + "properties.json", d_properties_all, true)

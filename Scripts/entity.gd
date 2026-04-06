@@ -14,6 +14,16 @@ var unique_number = randi_range(0, 999)
 
 
 func _ready():
+	if start_animation != "none":
+		animation_all.speed_scale = randf_range(0.1, 8)
+		animation_general.speed_scale = randf_range(0.1, 8)
+		animation_color.speed_scale = randf_range(0.1, 8)
+		animation_gear.speed_scale = randf_range(0.1, 8)
+		if animation_all.has_animation(start_animation) : animation_all.play(start_animation)
+		elif animation_general.has_animation(start_animation) : animation_general.play(start_animation)
+		elif animation_color.has_animation(start_animation) : animation_color.play(start_animation)
+		elif animation_gear.has_animation(start_animation) : animation_gear.play(start_animation)
+	
 	if sprite_filepath != "none": sprite.sprite_frames = load(sprite_filepath)
 	
 	basic_on_inactive()
@@ -66,7 +76,15 @@ func _ready():
 		Player.c_attack.wait_time = set_player_attack_cooldown_value
 		Player.c_attack.start()
 	
-	if start_animation != "none" : animation_all.play(start_animation)
+	if start_animation != "none":
+		animation_all.speed_scale = randf_range(0.1, 4)
+		animation_general.speed_scale = randf_range(0.1, 4)
+		animation_color.speed_scale = randf_range(0.1, 4)
+		animation_gear.speed_scale = randf_range(0.1, 4)
+		if animation_all.has_animation(start_animation) : animation_all.play(start_animation)
+		elif animation_general.has_animation(start_animation) : animation_general.play(start_animation)
+		elif animation_color.has_animation(start_animation) : animation_color.play(start_animation)
+		elif animation_gear.has_animation(start_animation) : animation_gear.play(start_animation)
 	
 	synchronize_animation()
 	
@@ -117,8 +135,17 @@ func _ready():
 	if on_spawn_show_text:
 		text_show()
 	
+	#await get_tree().create_timer(0.5, true).timeout
 	
-	if start_animation != "none" : animation_all.play(start_animation)
+	if start_animation != "none":
+		animation_all.speed_scale = randf_range(0.1, 4)
+		animation_general.speed_scale = randf_range(0.1, 4)
+		animation_color.speed_scale = randf_range(0.1, 4)
+		animation_gear.speed_scale = randf_range(0.1, 4)
+		if animation_all.has_animation(start_animation) : animation_all.play(start_animation)
+		elif animation_general.has_animation(start_animation) : animation_general.play(start_animation)
+		elif animation_color.has_animation(start_animation) : animation_color.play(start_animation)
+		elif animation_gear.has_animation(start_animation) : animation_gear.play(start_animation)
 
 
 @onready var debug_label = $Label
@@ -1642,7 +1669,15 @@ func effects_reset():
 	# BUT LEAVING IT FOR NOW BECAUSE I LITERALLY CANT NARROW THIS ISSUE DOWN
 	await get_tree().create_timer(1.5, true).timeout
 	sprite.scale = sprite_start_scale
-	if start_animation != "none" : animation_all.play(start_animation)
+	if start_animation != "none":
+		animation_all.speed_scale = randf_range(0.1, 4)
+		animation_general.speed_scale = randf_range(0.1, 4)
+		animation_color.speed_scale = randf_range(0.1, 4)
+		animation_gear.speed_scale = randf_range(0.1, 4)
+		if animation_all.has_animation(start_animation) : animation_all.play(start_animation)
+		elif animation_general.has_animation(start_animation) : animation_general.play(start_animation)
+		elif animation_color.has_animation(start_animation) : animation_color.play(start_animation)
+		elif animation_gear.has_animation(start_animation) : animation_gear.play(start_animation)
 
 func handle_effects_collected_multiple():
 	set_hitbox(false, true)
