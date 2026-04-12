@@ -61,13 +61,13 @@ func message_show(message_text, pause_duration : float = 4.0, message_add_pos : 
 	if pause_duration: # Set to "0.0" to disable all pause and camera-related effects.
 		get_tree().paused = true
 		Overlay.animation("black_transparent_fade_in")
-		Globals.Player.camera.effect(camera_target_offset, camera_target_zoom, camera_target_rotation, camera_start_speed_multiplier)
+		Globals.World.camera.effect(camera_target_offset, camera_target_zoom, camera_target_rotation, camera_start_speed_multiplier)
 		
 		#layer = 101
 		
 		await get_tree().create_timer(pause_duration, true).timeout
 		
-		if is_instance_valid(Globals.Player.camera) : Globals.Player.camera.effect(Vector2(0, 0), Vector2(1, 1), 0.0, 0.5)
+		if is_instance_valid(Globals.World.camera) : Globals.World.camera.effect(Vector2(0, 0), Vector2(1, 1), 0.0, 0.5)
 		Overlay.animation("black_transparent_fade_out")
 		get_tree().paused = false
 		

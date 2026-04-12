@@ -269,6 +269,9 @@ func _process(delta):
 	
 	# Handle JUST (3/3):
 	just_handle()
+	
+	#sprite.visible = true
+	#sprite.modulate.a = 1
 
 
 func handle_gravity(delta):
@@ -870,6 +873,7 @@ func spawn_portal():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "collect_special" or anim_name == "rotate_away_up_right":
 		Globals.message_debug("Special collectible has been deleted after the collect animation finished.")
+		print("Deleted due to anim finishing.")
 		delete_entity()
 
 
@@ -1237,7 +1241,7 @@ func effect_death_normal():
 	sfx_manager.sfx_play(sfx_self_death_filepath, 1.0, randf_range(0.75, 1.25))
 	
 	Globals.spawn_scenes(World, Globals.scene_effect_oneShot_enemy, 1, position, -1)
-	if not block_effect_dead : Globals.spawn_scenes(World, Globals.scene_effect_dead_enemy, 1, position, -1)
+	if not block_effect_dead : Globals.spawn_scenes(World, Globals.scene_effect_dead_enemy, 1, position, 120)
 	Globals.spawn_scenes(World, Globals.scene_particle_star, 1, position, 4.0)
 	Globals.spawn_scenes(World, Globals.scene_particle_special2_multiple, 1, position, 4.0)
 	Globals.spawn_scenes(World, Globals.scene_particle_special_multiple, 1, position, 4.0)
@@ -1346,7 +1350,7 @@ func _on_sprite_animation_looped():
 
 
 func sprite_animation():
-	if dead : if sprite.sprite_frames.has_animation("dead") : sprite.play("dead") ; return
+	if dead : if sprite.sprite_frames : if sprite.sprite_frames.has_animation("dead") : sprite.play("dead") ; return
 	
 	basic_sprite_flipDirection()
 	
@@ -1646,6 +1650,7 @@ func spawn_entity_copy():
 	
 	entity.effects_reset()
 	
+	print("This should hardly ever happen...")
 	queue_free()
 
 func effects_reset():

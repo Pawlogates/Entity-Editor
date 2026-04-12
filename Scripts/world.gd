@@ -97,6 +97,7 @@ signal uncover_matching_id(id)
 
 signal reset_puzzle_all_nodes_ready
 
+@onready var background: CanvasLayer = $background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -352,14 +353,18 @@ func _ready():
 	if Globals.level_id != "overworld_factory":
 		SaveData.never_saved = false
 	
-	
-	await get_tree().create_timer(24, false).timeout
-	
+	if Globals.random_bool(4, 1) : _on_button_pressed()
+	await get_tree().create_timer(4, false).timeout
 	if Globals.random_bool(3, 1) : _on_button_pressed()
+	if is_instance_valid(background) : queue_free()
+	await get_tree().create_timer(4, false).timeout
+	if Globals.random_bool(2, 1) : _on_button_pressed()
+	await get_tree().create_timer(12, false).timeout
+	if Globals.random_bool(1, 1) : _on_button_pressed()
 	
 	if is_instance_valid(button) : button.scale = Vector2(1, 1)
 	
-	await get_tree().create_timer(64, false).timeout
+	await get_tree().create_timer(48, false).timeout
 	
 	if $Label : $Label.queue_free()
 	if $Label2 : $Label2.queue_free()
@@ -388,6 +393,8 @@ func _ready():
 
 #MAIN START
 func _physics_process(delta):
+	handle_actions_entity_editor()
+	
 	if is_instance_valid(button) and button.scale.x != 1 : button.modulate = Color(Globals.l_color_all.pick_random())
 	elif is_instance_valid(button) : button.modulate = Color.WHITE
 	
@@ -431,7 +438,7 @@ func _physics_process(delta):
 	#HANDLE BACKGROUND MOVEMENT
 	bg_move(delta)
 	
-	if Input.is_action_just_pressed("restart"):
+	if Input.is_action_just_pressed("restart_level"):
 		retry()
 	
 	if reset_puzzle_line_visible : queue_redraw()
@@ -1046,6 +1053,8 @@ func on_uncover_matching_id(id):
 
 
 func _on_cooldown_check_entity_count_timeout() -> void:
+	if Globals.random_bool(49, 1) : Globals.message("Remember to press the 'D' key, to delete all entities present on screen! It can get chaotic out there!", 2, Vector2(0, -200), 6, 4, Vector2(-1, -1), Vector2(3, 3), randf_range(-10, 10))
+	
 	if Globals.random_bool(2, 1) : return
 	
 	var entities : Array = get_tree().get_nodes_in_group("entity")
@@ -1097,10 +1106,10 @@ func _on_button_pressed() -> void:
 	
 	Globals.message("Performance mode has been enabled (actually it's more like 'actually usable' mode...)")
 	
-	if get_node_or_null("Node2D"):
-		$Node2D.queue_free()
-	else:
-		return
+	#if get_node_or_null("Node2D"):
+		#$Node2D.queue_free()
+	#else:
+		#return
 	
 	for x in get_tree().get_nodes_in_group("deco") + get_tree().get_nodes_in_group("text_manager"):
 		if x.is_in_group("text_manager"):
@@ -1134,13 +1143,15 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
 	for entity in get_tree().get_nodes_in_group("entity"):
 		entity.queue_free()
+	for entity in get_tree().get_nodes_in_group("Persist"):
+		entity.queue_free()
 	
 	Globals.message("All entities have been removed.")
 
 
 func _on_button_5_pressed() -> void:
 	if Globals.random_bool(3, 1) : Globals.weapon = {}
-	Globals.spawn_scenes(self, load("res://Enemies/entity_randomized.tscn"), 1, Vector2(randi_range(-800, 800), randi_range(-800, 0)))
+	Globals.spawn_scenes(self, load("res://Enemies/entity_randomized.tscn"), 1, Vector2(randi_range(-800, 800), randi_range(-800, 0)), randf_range(2, 240))
 
 
 var limit_entity_count_to_one : bool = false
@@ -1159,4 +1170,14 @@ func _on_button_7_pressed() -> void:
 
 
 func _on_button_8_pressed() -> void:
-	Globals.spawn_scenes(self, load(Globals.l_entity.pick_random()), 1, Vector2(randi_range(-800, 800), randi_range(-800, 0)))
+	Globals.spawn_scenes(self, load(Globals.l_entity.pick_random()), 1, Vector2(randi_range(-800, 800), randi_range(-800, 0)), randf_range(2, 240))
+
+
+func handle_actions_entity_editor():
+	if Input.is_action_just_pressed("base") : _on_button_7_pressed()
+	elif Input.is_action_just_pressed("premade") : _on_button_8_pressed()
+	elif Input.is_action_just_pressed("limit") : _on_button_6_pressed()
+	elif Input.is_action_just_pressed("random") : _on_button_5_pressed()
+	elif Input.is_action_just_pressed("delete") : _on_button_4_pressed()
+	elif Input.is_action_just_pressed("increase") : _on_button_2_pressed()
+	elif Input.is_action_just_pressed("decrease") : _on_button_3_pressed()

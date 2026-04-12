@@ -91,30 +91,30 @@ text = "Click here to disable decoration for better performance."
 [node name="ColorRect" type="ColorRect" parent="Button" index="0"]
 z_index = 1000
 layout_mode = 0
-offset_left = -128.0
-offset_top = -384.0
-offset_right = 368.0
-offset_bottom = -368.0
+offset_left = -52.7473
+offset_top = -400.0
+offset_right = 443.253
+offset_bottom = -384.0
 rotation = 0.780024
 color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="Button" index="1"]
 z_index = 1000
 layout_mode = 0
-offset_left = 111.0
-offset_top = -63.0
-offset_right = 219.0
-offset_bottom = -47.0
+offset_left = 186.253
+offset_top = -79.0
+offset_right = 294.253
+offset_bottom = -63.0
 rotation = 0.216744
 color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="Button" index="2"]
 z_index = 1000
 layout_mode = 0
-offset_left = 200.0
-offset_top = -140.0
-offset_right = 308.0
-offset_bottom = -124.0
+offset_left = 275.253
+offset_top = -156.0
+offset_right = 383.253
+offset_bottom = -140.0
 rotation = 1.34781
 color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 
@@ -159,6 +159,7 @@ offset_top = 86.0
 offset_right = 328.0
 offset_bottom = 92.0
 rotation = -0.358178
+color = Color(1, 0.287307, 0.225237, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="Button" index="7"]
 z_index = 1000
@@ -168,6 +169,7 @@ offset_top = 37.0
 offset_right = 322.0
 offset_bottom = 47.0
 rotation = 0.0754712
+color = Color(1, 0.287307, 0.225237, 1)
 
 [node name="ColorRect6" type="ColorRect" parent="Button" index="8"]
 z_index = 1000
@@ -177,6 +179,7 @@ offset_top = 48.0
 offset_right = 368.0
 offset_bottom = 57.0
 rotation = 2.1271
+color = Color(1, 0.287307, 0.225237, 1)
 
 [node name="Node2D" type="Node2D" parent="." index="20"]
 
@@ -204,28 +207,18 @@ position = Vector2(-608, -928)
 z_index = -10
 position = Vector2(992, -240)
 
-[node name="Label" type="Label" parent="." index="21"]
-offset_left = 96.0
-offset_top = 48.0
-offset_right = 416.0
-offset_bottom = 82.0
-theme = ExtResource("9_b31uc")
-theme_override_font_sizes/font_size = 22
-text = "Press R to restart the level."
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="." index="22"]
-offset_left = -80.0
-offset_top = -16.0
-offset_right = 592.0
-offset_bottom = 31.6667
+[node name="Label2" type="Label" parent="." index="21"]
+offset_left = -336.0
+offset_top = -672.0
+offset_right = 336.0
+offset_bottom = -624.333
 theme = ExtResource("9_b31uc")
 theme_override_font_sizes/font_size = 16
 text = "You can drag the spawn position marker around, as well as the player
 character, by clicking and holding the left mouse button!"
 horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="." index="23"]
+[node name="Button2" type="Button" parent="." index="22"]
 visible = false
 offset_left = 16.0
 offset_top = -800.0
@@ -234,7 +227,7 @@ offset_bottom = -752.0
 theme = ExtResource("9_b31uc")
 text = "+"
 
-[node name="Button3" type="Button" parent="." index="24"]
+[node name="Button3" type="Button" parent="." index="23"]
 visible = false
 offset_left = -64.0
 offset_top = -800.0
@@ -243,7 +236,7 @@ offset_bottom = -752.0
 theme = ExtResource("9_b31uc")
 text = "-"
 
-[node name="Button4" type="Button" parent="." index="25"]
+[node name="Button4" type="Button" parent="." index="24"]
 visible = false
 offset_left = -880.0
 offset_top = -816.0
@@ -253,7 +246,7 @@ theme = ExtResource("9_b31uc")
 theme_override_font_sizes/font_size = 16
 text = "Click to delete every entity currently on screen."
 
-[node name="Label3" type="Label" parent="." index="26"]
+[node name="Label3" type="Label" parent="." index="25"]
 offset_left = -336.0
 offset_top = -832.0
 offset_right = 336.0
@@ -263,7 +256,7 @@ theme_override_font_sizes/font_size = 16
 text = "Change the entity respawn rate."
 horizontal_alignment = 1
 
-[node name="Button5" type="Button" parent="." index="27"]
+[node name="Button5" type="Button" parent="." index="26"]
 visible = false
 offset_left = 464.0
 offset_top = -768.0
@@ -273,7 +266,7 @@ theme = ExtResource("9_b31uc")
 theme_override_font_sizes/font_size = 16
 text = "Click to spawn a fully randomized entity."
 
-[node name="Button6" type="Button" parent="." index="28"]
+[node name="Button6" type="Button" parent="." index="27"]
 visible = false
 offset_left = -256.0
 offset_top = -736.0
@@ -284,7 +277,7 @@ theme_override_font_sizes/font_size = 12
 text = "Click to limit the present entity count to ONE at a time
 (or to disable the limit)."
 
-[node name="Button7" type="Button" parent="." index="29"]
+[node name="Button7" type="Button" parent="." index="28"]
 visible = false
 offset_left = -832.0
 offset_top = -768.0
@@ -294,7 +287,7 @@ theme = ExtResource("9_b31uc")
 theme_override_font_sizes/font_size = 12
 text = "Click to reset all entity behavior."
 
-[node name="Button8" type="Button" parent="." index="30"]
+[node name="Button8" type="Button" parent="." index="29"]
 visible = false
 offset_left = 400.0
 offset_top = -816.0

@@ -4,6 +4,8 @@ extends Control
 
 var fade_out = false
 
+@onready var display_controls: ColorRect = $display_controls
+
 @onready var entity : Node
 @onready var container_property_buttons: GridContainer = $container_property_buttons
 
@@ -69,6 +71,17 @@ func _ready():
 		await get_tree().create_timer(0.01, true).timeout
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("hide"):
+		
+		$toggle_properties_visible.visible = Globals.opposite_bool($toggle_properties_visible.visible)
+		for node in Globals.World.get_children() + get_children():
+			if node is Button or node is Label:
+				if not node.is_in_group("important"):
+					node.visible = $toggle_properties_visible.visible
+		
+		if Globals.World.get_node_or_null("Node2D"):
+			Globals.World.get_node("Node2D").queue_free()
+	
 	if Input.is_action_just_pressed("quickselect"):
 		container_property_buttons.visible = Globals.opposite_bool(container_property_buttons.visible)
 		
@@ -87,9 +100,20 @@ func _physics_process(delta: float) -> void:
 		#for property_button in container_property_buttons.get_children():
 			#property_button.check_property_name()
 	
-	if fade_out : modulate.a = move_toward(modulate.a, 0.4, delta / 4)
-	else : modulate.a = 1.0
-
+	if fade_out:
+		container_property_buttons.modulate.a = move_toward(container_property_buttons.modulate.a, 0.25, delta / 10)
+		display_controls.position = lerp(display_controls.position, Vector2(960, 540) - display_controls.size / 1.35, delta)
+		display_controls.scale = display_controls.scale.move_toward(Vector2(1.5, 1.5), delta / 10)
+		display_controls.modulate.a = move_toward(display_controls.modulate.a, 0, delta / 10)
+		if not container_property_buttons.visible:
+			display_controls.z_index = -999
+	
+	else:
+		container_property_buttons.modulate.a = 1.0
+		display_controls.scale = Vector2.ONE
+		display_controls.position = Vector2(1554, 944)
+		display_controls.modulate.a = 2
+		display_controls.z_index = 10
 
 func spawn_scene(target, scene, quantity : int = 1):
 	var spawned_scenes : Array = []
@@ -127,7 +151,7 @@ func _on_toggle_properties_visible_pressed() -> void:
 @onready var cooldown_fade: Timer = $cooldown_fade
 
 func _on_cooldown_fade_timeout() -> void:
-	cooldown_fade.wait_time = randf_range(2, 12)
+	cooldown_fade.wait_time = randf_range(1, 4)
 	fade_out = true
 
 func _on_gui_input(event: InputEvent) -> void:

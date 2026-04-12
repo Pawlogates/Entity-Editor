@@ -1208,7 +1208,7 @@ func synchronize_animation():
 
 func delete_entity():
 	if reset_puzzle_delete_node_queued : return
-	queue_free()
+	#queue_free()
 
 
 func set_hitbox(active : bool, deferred : bool = true):

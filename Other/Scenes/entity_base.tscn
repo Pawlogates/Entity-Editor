@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wgtcgh1uo037"]
+[gd_scene load_steps=16 format=3 uid="uid://wgtcgh1uo037"]
 
 [ext_resource type="Script" uid="uid://bk66d2tjq15q" path="res://Scripts/entity.gd" id="1_wx0ek"]
 [ext_resource type="PackedScene" uid="uid://v151qvyxpbng" path="res://Other/Scenes/sprite.tscn" id="2_1y7wk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bgcgpxrksdo80" path="res://Other/Scenes/animation_gear.tscn" id="6_84r7y"]
 [ext_resource type="Script" uid="uid://12wkcbpatg3w" path="res://Enemies/general_timers_core.gd" id="7_fjle6"]
 [ext_resource type="PackedScene" uid="uid://wn4ag4k6r2t5" path="res://Other/Entity Behaviors/scan_patrolling_vision.tscn" id="7_spxko"]
+[ext_resource type="PackedScene" uid="uid://dyfacu7kmv2uk" path="res://Other/Particles/splash.tscn" id="10_5wk4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ep4j2"]
 size = Vector2(62, 62)
@@ -180,6 +181,11 @@ one_shot = true
 
 [node name="cooldown_attack_limit" type="Timer" parent="."]
 one_shot = true
+
+[node name="particles_water_entered" parent="." instance=ExtResource("10_5wk4g")]
+
+[node name="particles_water_entered2" parent="." instance=ExtResource("10_5wk4g")]
+rotation = 3.14159
 
 [connection signal="animation_looped" from="sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="timeout" from="sprite/timer_state_attacking" to="." method="_on_timer_state_attacking_timeout"]

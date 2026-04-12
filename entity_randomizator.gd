@@ -73,6 +73,9 @@ func _ready():
 					if property_name == "movement_type":
 						entity.set(property_name, Globals.l_entity_movement_all.pick_random())
 			
+			if "cooldown" in property_name:
+				entity.set(property_name, randf_range(0.1, 12))
+			
 			if property_name == "limit_spawn_entity_cooldown":
 				entity.set(property_name, Globals.random_bool(1, 49))
 			

@@ -24,6 +24,7 @@ texture = ExtResource("2_f337c")
 expand_mode = 1
 
 [node name="ColorRect2" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
 offset_left = 647.0
 offset_top = -1131.0
 offset_right = 2648.0
@@ -35,6 +36,7 @@ texture = ExtResource("2_f337c")
 expand_mode = 1
 
 [node name="ColorRect3" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
 offset_left = 1840.0
 offset_top = -30.0
 offset_right = 3348.0
@@ -46,6 +48,7 @@ texture = ExtResource("2_f337c")
 expand_mode = 1
 
 [node name="ColorRect4" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
 offset_left = 1321.0
 offset_top = 812.0
 offset_right = 2733.0

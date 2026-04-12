@@ -26,6 +26,7 @@ func _on_pressed() -> void:
 	
 	container_choices.visible = false
 	
+	entity_editor.display_controls.visible = true
 	for node in entity_editor.container_property_buttons.get_children():
 		node.mouse_filter = 0
 		node.modulate = Color.WHITE

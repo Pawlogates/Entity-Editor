@@ -316,50 +316,54 @@ func _input(event: InputEvent) -> void:
 
 
 func handle_actions(delta):
-	if Input.is_action_just_pressed("menu_start_screen"):
-		change_main_scene(scene_start_screen)
+	if Input.is_action_just_pressed("move_down"):
+		var random_number = randi_range(0, 999)
+		SaveData.save_file("user://entity_" + str(random_number) + ".json", weapon, true)
+		Globals.message("The entity behavior set has been saved... " + "Filename: " + "entity_" + str(random_number) + ".json")
 	
-	elif Input.is_action_just_pressed("menu"):
+	#if Input.is_action_just_pressed("menu_start_screen"):
+		#change_main_scene(scene_start_screen)
+	
+	if Input.is_action_just_pressed("menu"):
 		
-		if Input.is_action_pressed("1"):
-			change_main_scene(scene_debug_level)
+		#if Input.is_action_pressed("1"):
+			#change_main_scene(scene_debug_level)
 		
-		elif Input.is_action_pressed("2"):
-			levelSet_id = "MAIN"
-			change_main_scene(scene_levelSet_screen)
+		#elif Input.is_action_pressed("2"):
+			#levelSet_id = "MAIN"
+			#change_main_scene(scene_levelSet_screen)
 		
-		elif Input.is_action_pressed("3"):
-			levelSet_id = "BONUS"
-			change_main_scene(scene_levelSet_screen)
+		#elif Input.is_action_pressed("3"):
+			#levelSet_id = "BONUS"
+			#change_main_scene(scene_levelSet_screen)
+		#
+		#elif Input.is_action_pressed("4"):
+			#levelSet_id = "DEBUG"
+			#change_main_scene(scene_levelSet_screen)
 		
-		elif Input.is_action_pressed("4"):
-			levelSet_id = "DEBUG"
-			change_main_scene(scene_levelSet_screen)
-		
-		else:
-			handle_spawn_menu(true)
+		handle_spawn_menu(true)
 	
 	
 	elif Input.is_action_just_pressed("pause"):
 		handle_pause()
 	
 	
-	elif Input.is_action_just_pressed("debug_mode"):
-		
-		debug_mode = Globals.opposite_bool(debug_mode)
-		
-		if debug_mode:
-			message_debug("Debug mode is active.")
-			Overlay.animation("white_fade_out", 2.0)
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			
-		else:
-			message_debug("Debug mode is disabled.")
-			Overlay.animation("black_fade_out", 2.0)
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-		
-		#if get_node_or_null("/root/World"): # Execute only if a level is currently loaded.
-		if Player : Globals.player_heal.emit(999)
+	#elif Input.is_action_just_pressed("debug_mode"):
+		#
+		#debug_mode = Globals.opposite_bool(debug_mode)
+		#
+		#if debug_mode:
+			#message_debug("Debug mode is active.")
+			#Overlay.animation("white_fade_out", 2.0)
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			#
+		#else:
+			#message_debug("Debug mode is disabled.")
+			#Overlay.animation("black_fade_out", 2.0)
+			#Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		#
+		##if get_node_or_null("/root/World"): # Execute only if a level is currently loaded.
+		#if Player : Globals.player_heal.emit(999)
 	
 	
 	elif Input.is_action_just_pressed("debug_console"):
@@ -369,8 +373,8 @@ func handle_actions(delta):
 		if World.has_node("background") : World.get_node("background").queue_free()
 	
 	
-	handle_debug_actions()
-	handle_toggle_debug_movement()
+	#handle_debug_actions()
+	#handle_toggle_debug_movement()
 	
 	handle_zoom(delta)
 	
@@ -745,7 +749,8 @@ func randomize_everything():
 	# Prepare lists:
 	
 	# Sprites:
-	l_sprite_entity = prepare_list_all("Assets/Graphics/sprites/packed/collectibles", [])
+	l_sprite_entity = prepare_list_all("Assets/Graphics/sprites/packed/boxes", []) + prepare_list_all("Assets/Graphics/sprites/packed/projectiles", []) + prepare_list_all("Assets/Graphics/sprites/packed/enemies", []) + prepare_list_all("Assets/Graphics/sprites/packed/collectibles", [])
+	l_sprite_entity.append("res://Assets/Graphics/sprites/Sprites_player.png")
 	
 	# Entities:
 	l_sprite_collectible = prepare_list_all("Collectibles", [])
@@ -972,7 +977,8 @@ func list_files_in_dirpath(directory_path : String, exclude : Array):
 func prepare_lists():
 	
 	# Sprites:
-	l_sprite_entity = prepare_list_all("Assets/Graphics/sprites/packed/collectibles", [])
+	l_sprite_entity = prepare_list_all("Assets/Graphics/sprites/packed/boxes", []) + prepare_list_all("Assets/Graphics/sprites/packed/projectiles", []) + prepare_list_all("Assets/Graphics/sprites/packed/enemies", []) + prepare_list_all("Assets/Graphics/sprites/packed/collectibles", [])
+	l_sprite_entity.append("res://Assets/Graphics/sprites/Sprites_player.png")
 	
 	# Entities:
 	l_collectible = prepare_list_all("Collectibles", [])
@@ -1140,7 +1146,7 @@ func handle_zoom(delta):
 		else:
 			target_camera.target_zoom = lerp(target_camera.target_zoom, Vector2(1, 1), delta * 8) ; target_camera.target_offset = lerp(target_camera.target_offset, Vector2(0, 0), delta * 2)
 	
-	if Input.is_action_pressed("zoom_out"):
+	if Input.is_action_pressed("decrease"):
 		
 		if next_reassign_camera:
 			target_camera = get_tree().get_first_node_in_group("camera")
@@ -1150,12 +1156,12 @@ func handle_zoom(delta):
 		#target_camera.zoom.y = move_toward(target_camera.zoom.y, 0.1, 0.01 * delta * 50 * zoom_multiplier)
 		
 		if is_instance_valid(target_camera):
-			target_camera.target_zoom - Vector2(0.2, 0.2)
+			target_camera.target_zoom -= Vector2(0.2, 0.2)
 		
 		message_debug(str(target_camera.zoom.x) + " is the current zoom. " + str(zoom_multiplier) + " is the current zoom_multiplier")
 	
 	
-	elif Input.is_action_pressed("zoom_in"):
+	elif Input.is_action_pressed("increase"):
 		
 		if next_reassign_camera:
 			target_camera = get_tree().get_first_node_in_group("camera")
@@ -1165,7 +1171,7 @@ func handle_zoom(delta):
 		#target_camera.zoom.y = move_toward(target_camera.zoom.y, 2, 0.01 * delta * 50 * zoom_multiplier)
 		
 		if is_instance_valid(target_camera):
-			target_camera.target_zoom + Vector2(0.2, 0.2)
+			target_camera.target_zoom += Vector2(0.2, 0.2)
 		
 		#if target_camera.zoom.x < 0.25:
 			#zoom_multiplier = 0.25
@@ -1185,17 +1191,17 @@ func handle_zoom(delta):
 		message_debug(str(target_camera.zoom.x) + " is the current zoom. " + str(zoom_multiplier) + " is the current zoom_multiplier.")
 	
 	
-	elif Input.is_action_pressed("zoom_reset"):
-		Globals.message_debug("Camera zoom reset.")
-		target_camera.zoom.x = 1
-		target_camera.zoom.y = 1
+	#elif Input.is_action_pressed("zoom_reset"):
+		#Globals.message_debug("Camera zoom reset.")
+		#target_camera.zoom.x = 1
+		#target_camera.zoom.y = 1
 
 
-func handle_toggle_debug_movement():
-	if Input.is_action_just_pressed("debug_cheat"):
-		if Globals.debug_mode:
-			Player.debug_movement = Globals.opposite_bool(Player.debug_movement)
-			Globals.dm("Debug movement status: " + str(Player.debug_movement))
+#func handle_toggle_debug_movement():
+	#if Input.is_action_just_pressed("debug_cheat"):
+		#if Globals.debug_mode:
+			#Player.debug_movement = Globals.opposite_bool(Player.debug_movement)
+			#Globals.dm("Debug movement status: " + str(Player.debug_movement))
 
 
 func get_filepath(file, details : bool = false):

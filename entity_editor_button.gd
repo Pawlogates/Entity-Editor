@@ -196,13 +196,18 @@ func _on_pressed() -> void:
 		property_value = Globals.opposite_bool(property_value)
 	
 	elif type == "Array":
+		entity_editor.display_controls.visible = false
+		
 		$container_buttons.visible = Globals.opposite_bool($container_buttons.visible)
+		entity_editor.display_controls.visible = false
 		for property_button in get_parent().get_children():
 			property_button.mouse_filter = 2
 			property_button.modulate = Color(1, 0.5, 0.5, 0.5)
 			modulate = Color.WHITE
 	
 	elif type == "String":
+		entity_editor.display_controls.visible = false
+		
 		$container_choices.visible = Globals.opposite_bool($container_choices.visible)
 		for property_button in get_parent().get_children():
 			property_button.mouse_filter = 2
@@ -210,6 +215,8 @@ func _on_pressed() -> void:
 			modulate = Color.WHITE
 	
 	elif type == "int_float":
+		entity_editor.display_controls.visible = false
+		
 		$container_buttons.visible = Globals.opposite_bool($container_buttons.visible)
 		for property_button in get_parent().get_children():
 			property_button.mouse_filter = 2
@@ -217,6 +224,8 @@ func _on_pressed() -> void:
 			modulate = Color.WHITE
 	
 	elif type == "Vector2":
+		entity_editor.display_controls.visible = false
+		
 		$container_buttons.visible = Globals.opposite_bool($container_buttons.visible)
 		for property_button in get_parent().get_children():
 			property_button.mouse_filter = 2
@@ -346,6 +355,8 @@ func apply_value():
 func _on_button_pressed() -> void:
 	Globals.World.camera.override_camera_pos = Vector2.ZERO
 	
+	entity_editor.display_controls.visible = true
+	
 	$container_choices.visible = Globals.opposite_bool($container_choices.visible)
 	for property_button in get_parent().get_children():
 			property_button.mouse_filter = 0
@@ -359,6 +370,8 @@ func _on_container_choices_gui_input(event: InputEvent) -> void:
 
 func _on_btn_close_pressed() -> void:
 	Globals.World.camera.override_camera_pos = Vector2.ZERO
+	
+	entity_editor.display_controls.visible = true
 	
 	$container_buttons.visible = Globals.opposite_bool($container_buttons.visible)
 	for property_button in get_parent().get_children():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnm366ngimnm3"]
+[gd_scene load_steps=5 format=3 uid="uid://cnm366ngimnm3"]
 
 [ext_resource type="Script" uid="uid://bls4cml41vnth" path="res://Objects/entity_editor_full.gd" id="1_leg0a"]
 [ext_resource type="Theme" uid="uid://8i27k6tj1d3o" path="res://Other/Themes/basic.tres" id="2_dkowj"]
 [ext_resource type="PackedScene" uid="uid://dgb361xj37pqy" path="res://Other/Scenes/sfx_manager.tscn" id="3_q3g6h"]
+[ext_resource type="PackedScene" uid="uid://dlpjl7dfwlbdb" path="res://Objects/Decorations/decoration_gear_random_type.tscn" id="4_hp0bv"]
 
 [node name="entity_editor_full" type="Control" groups=["entity_editor"]]
 z_index = 500
@@ -26,7 +27,7 @@ offset_top = 992.0
 offset_right = 532.0
 offset_bottom = 1068.0
 theme = ExtResource("2_dkowj")
-text = "Click here toggle visibility of the properties
+text = "Click here to toggle visibility of the properties
 (or just press Q)."
 
 [node name="cooldown_fade" type="Timer" parent="."]
@@ -46,30 +47,108 @@ text = "Click on any rectangle in order to affect the entity behavior."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="display_controls" type="ColorRect" parent="."]
 z_index = 500
 layout_mode = 0
-offset_left = 1584.0
+offset_left = 1568.0
 offset_top = 944.0
 offset_right = 1936.0
-offset_bottom = 1088.0
+offset_bottom = 1472.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="display_controls"]
 layout_mode = 0
-offset_left = -16.0
-offset_right = 352.0
+offset_right = 368.0
 offset_bottom = 160.0
 theme = ExtResource("2_dkowj")
 theme_override_font_sizes/font_size = 20
 text = "Controls:
 Q - Show / hide the editor
 Z / SPACE - Zoom camera in / out
-ESC - Open menu | R - Restart
+ESC - Open menu | Ctrl + R - Restart
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="display_controls"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 160.0
+offset_right = 357.0
+offset_bottom = 373.417
+theme = ExtResource("2_dkowj")
+theme_override_font_sizes/font_size = 16
+text = "P - Pause / unpause
+E - Spawn a premade entity
+R - Spawn a fully randomized entity
+D - Delete all entities on screen
+H - Hide all buttons on screen
+L - Limit on screen entities to one at a time
+
+Adjust entity spawn rate by pressing - / +
+BACKSPACE - Reset all entity behavior
+back to the base state
+
+S - Save entity behavior to file"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="display_controls"]
+z_index = 10
+layout_mode = 0
+offset_left = -48.0
+offset_top = 480.0
+offset_right = 416.0
+offset_bottom = 517.0
+theme = ExtResource("2_dkowj")
+theme_override_font_sizes/font_size = 12
+text = "Saved entity behavior path:
+C:\\Users\\Pawlogates_2\\AppData\\Roaming\\Godot\\app_userdata\\Entity Editor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="display_controls2" type="ColorRect" parent="display_controls"]
+z_index = -1
+layout_mode = 0
+offset_left = -48.0
+offset_top = 416.0
+offset_right = 416.0
+offset_bottom = 528.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="display_controls3" type="ColorRect" parent="display_controls"]
+z_index = -1
+layout_mode = 0
+offset_left = -48.0
+offset_top = 416.0
+offset_right = 145.0
+offset_bottom = 528.0
+rotation = -1.27737
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="decoration_gear" parent="display_controls/display_controls3" instance=ExtResource("4_hp0bv")]
+z_index = -5
+position = Vector2(34.9708, 5.10349)
+scale = Vector2(0.5, 0.5)
+
+[node name="decoration_gear2" parent="display_controls/display_controls3" instance=ExtResource("4_hp0bv")]
+z_index = -5
+position = Vector2(499.574, 277.362)
+scale = Vector2(0.25, 0.25)
+
+[node name="display_controls4" type="ColorRect" parent="display_controls"]
+z_index = -1
+layout_mode = 0
+offset_left = 329.0
+offset_top = 129.0
+offset_right = 522.0
+offset_bottom = 241.0
+rotation = 1.27758
+scale = Vector2(1.555, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="toggle_properties_visible" to="." method="_on_toggle_properties_visible_pressed"]
